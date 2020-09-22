@@ -8,7 +8,7 @@
     *Verify VPN connectivity
 
 
-##Steps:
+## Steps:
 1. Create the VPN gateways and tunnels in us-central1 named vpn-1-static-ip
 
 gcloud compute  target-vpn-gateways create "vpn-1" --region "us-central1" --network "vpn-network-1"
