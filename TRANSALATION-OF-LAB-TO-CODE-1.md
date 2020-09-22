@@ -7,7 +7,9 @@
 
 ### Steps: 
 1). Create an auto mode VPC network with Firewall rules for mynetwork
+
     --------------------------------------------------------------
+
 
 gcloud compute networks create myvpcnetwork --subnet-mode=auto 
 
@@ -21,18 +23,24 @@ gcloud compute firewall-rules create mynetwork-allow-ssh myvpcnetwork --directio
 
 
 2). Create a VM instance in us-central1
+
     -----------------------------------
+    
 gcloud compute instances create mynet-us-vm --zone=us-central1-c --subnet=mynetwork --image=debian-10 --boot-disk-size=10GB --boot-disk-device-name=mynet-us-vm
 
 3). Create a VM instance in europe-west1
+
     ---------------------------------------
+    
 gcloud compute instances create mynet-eu-vm --zone=us-west1-c --subnet=mynetwork   --image=debian-10 --boot-disk-device-name=mynet-eu-vm
 
 
  ### Explore the connectivity for VM instances
+ 
     -------------------------------------------------
 
 4). Removing the allow-icmp firewall rule and try to ping the internal and external IP address of mynet-eu-vm.
+
     ----------------------------------------------------------------------------------------------------------
 
 Remove the allow-icmp firewall rules then ping to the mynet-us-vm (10.128.0.2) internal IP address
@@ -46,7 +54,9 @@ Result=ping fails
 
 
 5). Remove the allow-internal firewall rules
+
     ----------------------------------------
+    
 Remove the allow-internal firewall rule and try to ping the internal IP address of mynet-eu-vm(10.132.0.2).
 
 Then test connectivity to mynet-eu-vm's internal IP:
@@ -54,7 +64,9 @@ ping -c 3 10.132.0.2
 Result=Connection times out
 
 6). Remove the allow-ssh firewall rules
+
     -----------------------------------
+    
 Remove the allow-ssh firewall rule and try to SSH to mynet-us-vm.
 
 For mynet-us-vm(35.239.34.82), click SSH to launch a terminal and connect.
